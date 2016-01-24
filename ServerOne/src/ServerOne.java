@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ServerOne {
 
@@ -9,17 +10,17 @@ public class ServerOne {
 		try {
 			//在20006端口监听客户端的tcp请求
 			ServerSocket server = new ServerSocket(20006);
-			Socket client = null;
+			ArrayList<Socket> cliendArray = new ArrayList<Socket>();
+			Socket cliend = null;
 			boolean flag = true;
 			while(flag){
 				//等待客户端的链接
-				client = server.accept();
+				cliend = server.accept();
 				System.out.println("与客户端链接成功");
+				cliendArray.add(cliend);
 				//为每个客户端开启一个线程
-				ServerThread serverThread = new ServerThread(client);
+				ServerThread serverThread = new ServerThread(cliendArray);
 				serverThread.start();
-//				Thread thread = new Thread(serverThread);
-//				thread.start();
 			}
 			
 			server.close();

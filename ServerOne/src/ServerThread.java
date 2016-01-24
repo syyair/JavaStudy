@@ -3,19 +3,26 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ServerThread extends Thread {
 
-	private Socket client = null;
+//	private Socket client = null;
+	private ArrayList<Socket> clientArray = null;
 	
 	//传入一个客户端的scoket对象
-	ServerThread(Socket client){
-		this.client = client;
+	ServerThread(ArrayList<Socket> clientArray){
+		this.clientArray = clientArray;
 	}
 	
 	@Override
 	public void run() {
-		
+		for (int i = 0 ;i < clientArray.size() ; i++){
+			sendMessage(clientArray.get(i));
+		}
+	}
+	
+	public void sendMessage(Socket client){
 		try {
 			//获取socket输出流，向客户端发送数据
 			PrintStream out = new PrintStream(client.getOutputStream());
@@ -44,7 +51,6 @@ public class ServerThread extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 }

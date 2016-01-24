@@ -1,0 +1,52 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
+
+public class ServerThread extends Thread {
+
+	private Socket client = null;
+	public static String message;
+	
+	//传入一个客户端的scoket对象
+	ServerThread(Socket client){
+		this.client = client;
+	}
+	
+	@Override
+	public void run() {
+		
+		try {
+			//获取socket输出流，向客户端发送数据
+			PrintStream out = new PrintStream(client.getOutputStream());
+			//获取socket输入流，接受客户端发送过来的数据
+			BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+			
+			boolean flag = true;
+			while(flag){
+//				String str = reader.readLine();
+				message = reader.readLine();
+				if(message == null || "".equals(message)){
+					flag = false;
+				}else{
+					if("bye".equals(message)){
+						flag = false;
+					}else{
+						//讲接受到的字符串加上前缀，发送给客户端
+						out.println("echo: " + message);
+					}
+				}
+			}
+			
+			out.close();
+			reader.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+}

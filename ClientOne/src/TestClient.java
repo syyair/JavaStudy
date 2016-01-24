@@ -1,0 +1,19 @@
+
+public class TestClient extends Thread{
+
+	private Client client;
+	
+	TestClient(Client client){
+		this.client = client;
+	}
+	
+	
+	@Override
+	public void run() {
+		client.connect();
+	
+	}
+	
+	
+
+}

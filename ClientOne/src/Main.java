@@ -3,11 +3,15 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Client client1 = new Client();
-		client1.connect();
+		Client client = new Client();
+		client.connect();
 		
-		Client client2 = new Client();
-		client2.connect();
+//		TestClient client1 = new TestClient(client);
+//		client1.start();
+//		TestClient client2 = new TestClient(client);
+//		client2.start();
+		
+		
 	}
 
 }
