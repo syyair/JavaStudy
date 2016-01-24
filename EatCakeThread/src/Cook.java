@@ -1,33 +1,27 @@
 
 public class Cook extends Thread{
 
-	Kitchen kitchen = new Kitchen();
+	private Kitchen kitchen = new Kitchen();
+	
+	Cook(Kitchen kitchen){
+		this.kitchen = kitchen;
+	}
 	
 	@Override
 	public void run() {
-		synchronized(this){
-			while(kitchen.getCakeCount() <= kitchen.max){
-				kitchen.push();
-				try {
-					//Ïß³ÌË¯ÃßÊ±£¬ËûËùÓµÓÐµÄÈÎºÎËø¶¼²»»áÊÍ·Å
-					sleep(10000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				notifyAll();
-			}
-		}
-
-		if(kitchen.getCakeCount() > kitchen.max){
+		
+		while(kitchen.cakeCount < kitchen.max){
+			kitchen.push();
 			try {
-				this.wait();
+				//çº¿ç¨‹ç¡çœ æ—¶ï¼Œä»–æ‰€æ‹¥æœ‰çš„ä»»ä½•é”éƒ½ä¸ä¼šé‡Šæ”¾
+				sleep(5000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
+	
 
 }
