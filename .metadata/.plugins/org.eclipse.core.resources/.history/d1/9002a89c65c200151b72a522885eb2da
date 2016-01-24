@@ -1,0 +1,15 @@
+import java.io.IOException;
+import java.net.ServerSocket;
+
+public class ServerOne {
+
+	public void connet(){
+		//在20006端口监听客户端的tcp请求
+		try {
+			ServerSocket server = new ServerSocket(20006);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,6 @@
+import java.net.Socket;
+
+public class Client {
+	Socket socket = new Socket("10.17.56.93", 20006);
+
+}

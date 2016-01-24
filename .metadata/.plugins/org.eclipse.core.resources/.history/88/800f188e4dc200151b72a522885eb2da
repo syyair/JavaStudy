@@ -1,0 +1,22 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		try {
+			FileWriter fileWriter = new FileWriter("/Users/yuebinbin/test.txt");
+			fileWriter.write("test test test");
+			fileWriter.write("hahahahah");
+			fileWriter.write("sunyingying");
+			fileWriter.close();
+			System.out.println("finish");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
