@@ -19,7 +19,7 @@ public class ServerOne {
 				System.out.println("与客户端链接成功");
 				cliendArray.add(cliend);
 				//为每个客户端开启一个线程
-				ServerThread serverThread = new ServerThread(cliendArray);
+				ServerThread serverThread = new ServerThread(cliend,cliendArray);
 				serverThread.start();
 			}
 			

@@ -7,27 +7,24 @@ import java.util.ArrayList;
 
 public class ServerThread extends Thread {
 
-//	private Socket client = null;
-	private ArrayList<Socket> clientArray = null;
+	private Socket cliend = null;
+	private ArrayList<Socket> cliendArray = null;
 	
 	//传入一个客户端的scoket对象
-	ServerThread(ArrayList<Socket> clientArray){
-		this.clientArray = clientArray;
+	ServerThread(Socket cliend, ArrayList<Socket> cliendArray){
+		this.cliendArray = cliendArray;
+		this.cliend = cliend;
 	}
 	
 	@Override
 	public void run() {
-		for (int i = 0 ;i < clientArray.size() ; i++){
-			sendMessage(clientArray.get(i));
-		}
-	}
-	
-	public void sendMessage(Socket client){
+		
+		PrintStream out = null;
+		
 		try {
-			//获取socket输出流，向客户端发送数据
-			PrintStream out = new PrintStream(client.getOutputStream());
+			
 			//获取socket输入流，接受客户端发送过来的数据
-			BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(cliend.getInputStream()));
 			
 			boolean flag = true;
 			while(flag){
@@ -38,8 +35,13 @@ public class ServerThread extends Thread {
 					if("bye".equals(str)){
 						flag = false;
 					}else{
-						//讲接受到的字符串加上前缀，发送给客户端
-						out.println("echo: " + str);
+						//获取socket输出流，向客户端发送数据,发送数据给所有客户端发送
+						for(int i = 0 ; i < cliendArray.size() ; i++){
+							out = new PrintStream(cliendArray.get(i).getOutputStream());
+							//将接受到的字符串加上前缀，发送给客户端
+							out.println("echo: " + str);
+						}
+					
 					}
 				}
 			}
@@ -52,5 +54,4 @@ public class ServerThread extends Thread {
 			e.printStackTrace();
 		}
 	}
-	
 }

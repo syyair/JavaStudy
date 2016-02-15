@@ -8,7 +8,7 @@ public class Main {
 	//向上转型，动态绑定
 	static void drawTest(Shape shape){
 		shape.draw();
-	}**/
+	}
 	
 	/**
 	//向上转型，静态绑定
@@ -16,12 +16,12 @@ public class Main {
 		shape.draw();
 	}**/
 	
-	/**
+	
 	//向下转型例子2
 	static void fight(ICanFight f){f.fight();}
 	static void swim(ICanSwim s){s.swim();}
 	static void fly(ICanFly f){f.fly();}
-	static void action(ActionCharacter a){a.fight(); a.fight2();}**/
+	static void action(ActionCharacter a){a.fight(); a.fight2();}
 	
 	public static void main(String[] args) {
 		
@@ -37,19 +37,19 @@ public class Main {
 		List<Apple> fruitApple = new ArrayList<Fruit>();**/
 		
 		
-		/**
+		
 		// 向上转型，调用指定的父类方法
 		Circle circle = new Circle();
 		//使用的是父类的方法，一定是用父类的方法。可以传入子类
 		Shape shape = new Shape();
 		//使用的是父类的draw方法，传入的circle可以向上转型为shape
-		shape.draw(circle);**/
+		shape.draw(circle);
 		
 		/**
 		//向上转型，动态绑定
-		Circle circle = new Circle();
+		Circle circle1 = new Circle();
 		//传入的circle向上转型为shape，但是使用的是cricle的draw方法
-		drawTest(circle);**/
+		drawTest(circle1);
 		
 		/**
 		//向上转型，动态绑定
@@ -73,19 +73,19 @@ public class Main {
 		//useStr[0]是父类对象不能向下转型为子类对象
 		//((MoreUseful)useStr[0]).u();**/
 		
-		/**
+		
 		//向下转型例子2
 		Hero h = new Hero();
 		fight(h);
 		swim(h);
 		fly(h);
-		action(h);**/
+		action(h);
 
 	}
 
 }
 
-/**
+
 //向上转型，调用指定的父类方法
 class Shape{
 	public void draw(Shape shape){
@@ -100,7 +100,7 @@ class Circle extends Shape{
 		System.out.println("this is circle");
 	}
 	
-}**/
+}
 
 /**
 //向上转型动态绑定
@@ -113,7 +113,7 @@ class Circle extends Shape{
 	public void draw(){
 		System.out.println("this is circle");
 	}
-}**/
+}
 
 /**
 //向上转型静态绑定
@@ -140,7 +140,7 @@ class MoreUseful extends Useful{
 	public void u(){System.out.println("this is u() MoreUseful");}
 }**/
 
-/**
+
 //向下转型例子2
 interface ICanFight{
 	void fight();
@@ -184,15 +184,15 @@ class Hero extends ActionCharacter implements ICanFight, ICanSwim, ICanFly{
 		System.out.println("this is hero fight2()");
 	}
 	
-}**/
+}
 
-/**
+
 //容器向下转型
 class Fruit{}
 
 class Apple extends Fruit{}
 
-class Orange extends Fruit{}**/
+class Orange extends Fruit{}
 
 
 

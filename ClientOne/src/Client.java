@@ -11,7 +11,7 @@ public class Client {
 		
 		try {
 			//建立tcp链接
-			Socket client = new Socket("10.17.56.93", 20006);
+			Socket client = new Socket("10.18.25.223", 20006);
 			//设置超时时间
 			client.setSoTimeout(10000);
 			//获取从键盘输入的数据

@@ -6,6 +6,9 @@ public class Main {
 		//优先级由高到低依次为：
 		//this.show(O)、super.show(O)、this.show((super)O)、super.show((super)O)
 		A a1 = new A();
+		//向上转型，父类引用指向子类对象
+		//向上转型时，会遗失除与父类共有的其他方法
+		//所以a2.show(b)不会调用B的show（B），会调用B的show（A）
 		A a2 = new B();
 		B b = new B();
 		C c = new C();

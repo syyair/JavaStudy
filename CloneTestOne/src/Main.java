@@ -25,8 +25,8 @@ public class Main {
 		vector1.add(b1);
 		a2.vectorB = vector1;
 		
-		System.out.println(a1.nameArr[1] + "  " + a1.vectorB.get(0).bStr);
-		System.out.println(a2.nameArr[1] + "  " + a2.vectorB.get(0).bStr);
+		System.out.println(a1.nameArr[1] + "  " + a1.vectorB.get(0).bStr + "  " + a1.name);
+		System.out.println(a2.nameArr[1] + "  " + a2.vectorB.get(0).bStr + "  " + a1.name);
 	}
 
 }
